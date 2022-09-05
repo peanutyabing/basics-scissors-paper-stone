@@ -63,6 +63,11 @@ The <html> element is known as the root element of a HTML page. All other elemen
         margin: 20px auto;
         padding: 20px;
         width: 100%;
+      
+      }
+      @keyframes mynewmove {
+        from {top: 0px;}
+        to {top: 200px;}
       }
     </style>
   </head>
@@ -74,7 +79,12 @@ The <html> element is known as the root element of a HTML page. All other elemen
     <!-- The <div> tag defines a division or a section in an HTML document, and is commonly use as a "container" for nested HTML elements. -->
     <div class="box">
       <!-- The <p> tag defines a paragraph element. -->
-      <p>Input:</p>
+      <div id="username-input">
+        <p>Username:</p>
+        <input id="username" />
+        <br />
+        <button id="submit-button">Submit username</button>
+      </div>
       <!-- The self-closing <br /> tag represents a line break - a line's worth of spacing before dispalying the next element. -->
       <br />
       <!-- The <button> tag represents.. you guessed it! a button. -->
@@ -110,11 +120,18 @@ The <html> element is known as the root element of a HTML page. All other elemen
     <!-- Define button click functionality -->
     <script>
       var reverseMode = document.querySelector("#reverse-mode")
-
+      var userNameField = document.querySelector("#username")
+      var submitButton = document.querySelector("#submit-button"); 
       var stoneButton = document.querySelector("#stone_button");
       var paperButton = document.querySelector("#paper_button");
       var scissorsButton = document.querySelector("#scissors_button");
       
+      submitButton.addEventListener("click", function () {
+        var result = setUserName(document.querySelector("#username").value);
+        var output = document.querySelector("#output-div");
+        output.innerHTML = `Hello ${result}`;
+      });
+
       stoneButton.addEventListener("click", function () {
         var result = main("stone", reverseMode.checked);
         var output = document.querySelector("#output-div");

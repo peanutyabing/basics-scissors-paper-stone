@@ -1,3 +1,6 @@
+var userName = "";
+var gameMode = "waiting for username";
+
 var things = ["stone", "paper", "scissors"];
 
 var pic = {
@@ -23,10 +26,23 @@ var winningHand = {
 console.log("probability table");
 console.log(winningHand);
 
+var setUserName = function (input) {
+  if (gameMode == "waiting for username") {
+    userName = input;
+    gameMode = "normal mode";
+    // submitButton.disabled = true;
+    // userNameField.value = "";
+    document.querySelector("#username-input").style.display = "none";
+    // document.querySelector("#submit-button").style.animation = "mynewmove 4s 2";
+    return userName;
+  }
+};
+
 var main = function (playerChoice, reverse = false) {
   console.log("⭐⭐⭐New Game⭐⭐⭐");
   console.log("User:");
   console.log(playerChoice);
+
   if (reverse == false) {
     var finalResult = getResultComparison(playerChoice);
     console.log("Result:");
